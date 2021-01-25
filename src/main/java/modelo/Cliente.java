@@ -1,6 +1,6 @@
 package modelo;
 
-import helper.Sistema;
+import controlador.Helper;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -64,7 +64,7 @@ public class Cliente implements Serializable,Comparable<Cliente>
         ArrayList<Cliente> lista= Cliente.desserializarCliente("Cliente.ser");
         lista.add(cliente);
         Cliente.serializarCliente(lista, "Cliente.ser");
-        Sistema.showMessage(new Alert(Alert.AlertType.INFORMATION),"Creación de cuenta",null,"Se ha registrado correctamente el cliente!");
+        Helper.showMessage(new Alert(Alert.AlertType.INFORMATION),"Creación de cuenta",null,"Se ha registrado correctamente el cliente!");
     }
     
 }

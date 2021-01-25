@@ -1,6 +1,6 @@
 package modelo;
 
-import helper.Sistema;
+import controlador.Helper;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -112,6 +112,6 @@ public class ReporteVentas implements Serializable,Comparable<ReporteVentas>
         ArrayList<ReporteVentas> lista= ReporteVentas.desserializarReporte("Reporte.ser");
         lista.add(reporte);
         ReporteVentas.serializarReporte(lista, "Reporte.ser");
-        Sistema.showMessage(new Alert(Alert.AlertType.INFORMATION),"Creación de Producto",null,"Se ha registrado correctamente el producto!");
+        Helper.showMessage(new Alert(Alert.AlertType.INFORMATION),"Creación de Producto",null,"Se ha registrado correctamente el producto!");
     }  
 }

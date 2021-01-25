@@ -1,6 +1,6 @@
 package modelo;
 
-import helper.Sistema;
+import controlador.Helper;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -79,7 +79,7 @@ public class Cuenta implements Serializable,Comparable<Cuenta>{
         ArrayList<Cuenta> lista= Cuenta.desserializarCuenta("Cuenta.ser");
         lista.add(cuenta);
         Cuenta.serializarCuenta(lista, "Cuenta.ser");
-        Sistema.showMessage(new Alert(Alert.AlertType.INFORMATION),"Creación de Cuenta",null,"Se ha registrado correctamente la cuenta!");
+        Helper.showMessage(new Alert(Alert.AlertType.INFORMATION),"Creación de Cuenta",null,"Se ha registrado correctamente la cuenta!");
     }   
     
     

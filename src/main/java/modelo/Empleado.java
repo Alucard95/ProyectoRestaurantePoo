@@ -1,6 +1,6 @@
 package modelo;
 
-import helper.Sistema;
+import controlador.Helper;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -109,7 +109,7 @@ public class Empleado implements Serializable,Comparable<Empleado>{
         ArrayList<Empleado> lista= Empleado.desserializarEmpleado("Empleado.ser");
         lista.add(empleado);
         Empleado.serializarEmpleado(lista, "Empleado.ser");
-        Sistema.showMessage(new Alert(Alert.AlertType.INFORMATION),"Creación de cuenta",null,"Se ha registrado correctamente el empleado!");
+        Helper.showMessage(new Alert(Alert.AlertType.INFORMATION),"Creación de cuenta",null,"Se ha registrado correctamente el empleado!");
     }
 
     @Override

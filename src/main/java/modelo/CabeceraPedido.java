@@ -1,6 +1,6 @@
 package modelo;
 
-import helper.Sistema;
+import controlador.Helper;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -123,7 +123,7 @@ public class CabeceraPedido implements Serializable,Comparable<CabeceraPedido>
         lista.add(cabecera);
         System.out.println("Cabecera =>"+cabecera.getNumeroMesa()+","+cabecera.getMesero().getUsuario()+", "+cabecera.getCliente().getNombre());
         CabeceraPedido.serializarCabeceraPedido(lista, "Cabecera.ser");
-        Sistema.showMessage(new Alert(Alert.AlertType.INFORMATION),"Creación de cuenta",null,"Se ha registrado correctamente el pedido!");
+        Helper.showMessage(new Alert(Alert.AlertType.INFORMATION),"Creación de cuenta",null,"Se ha registrado correctamente el pedido!");
     }
    
     @Override

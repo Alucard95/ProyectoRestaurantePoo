@@ -1,6 +1,6 @@
 package modelo;
 
-import helper.Sistema;
+import controlador.Helper;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -119,7 +119,7 @@ public class Mesa implements Serializable,Comparable<Empleado>
         ArrayList<Mesa> lista= Mesa.desserializarMesa("Mesa.ser");
         lista.add(mesa);
         Mesa.serializarMesa(lista, "Mesa.ser");
-        Sistema.showMessage(new Alert(Alert.AlertType.INFORMATION),"Creación de Mesa",null,"Se ha registrado correctamente la mesa!");
+        Helper.showMessage(new Alert(Alert.AlertType.INFORMATION),"Creación de Mesa",null,"Se ha registrado correctamente la mesa!");
     } 
 
     @Override
