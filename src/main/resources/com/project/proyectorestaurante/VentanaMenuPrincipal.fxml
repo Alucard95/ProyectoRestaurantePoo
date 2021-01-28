@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #c62828;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.VentanaMenuPrincipalController">
+   <children>
+      <Label fx:id="lbl_regresar" text="Label" visible="false" />
+      <MenuBar prefHeight="20.0" prefWidth="800.0" style="-fx-background-color: #ffd54f;">
+         <menus>
+            <Menu mnemonicParsing="false" text="Cerrar">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#menu" text="Cerrar Sesión" />
+                  <MenuItem mnemonicParsing="false" onAction="#salir" text="Cerrar programa" />
+               </items>
+            </Menu>
+            <Menu fx:id="menu_opciones" mnemonicParsing="false" text="Opciones">
+               <items>
+                  <MenuItem id="1" fx:id="menu_monitoreo" mnemonicParsing="false" onAction="#mostrarMonitoreo" text="Monitoreo Restaurante" />
+                  <MenuItem id="3" fx:id="menu_gestion_menu" mnemonicParsing="false" onAction="#mostrar_menu_productos" text="Gestión del Menú" />
+                  <MenuItem id="4" fx:id="menu_reporte" mnemonicParsing="false" onAction="#mostrar_Reporte_Ventas" text="Reporte de Ventas" />
+                  <MenuItem id="2" fx:id="menu_plano_restaurante" mnemonicParsing="false" onAction="#mostrar_menu_plano" text="Diseño de Plano del Restaurante" />
+                  <MenuItem id="5" fx:id="menu_tomar_pedido" mnemonicParsing="false" onAction="#mostrar_toma_pedido" text="Tomar Pedido" />
+               </items>
+            </Menu>
+         </menus>
+         <effect>
+            <Lighting diffuseConstant="1.27" specularExponent="18.13" surfaceScale="5.8">
+               <bumpInput>
+                  <Shadow color="WHITE" height="255.0" radius="127.0" width="255.0" />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+      </MenuBar>
+   </children>    
+</AnchorPane>
