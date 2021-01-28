@@ -26,6 +26,20 @@ public class Helper
         return false;
     }
     
+    public static boolean verificarExistenciaEmpleado(Empleado empleado)
+    {
+        //Este método permite verificar si el usuario a crear es vendedor, comprador o ninguno. Validacion en el main y para el metodo que agrega los tipo de usuario
+        ArrayList<Empleado> empleados = Empleado.desserializarEmpleado("Empleado.ser");
+        for(Empleado emp: empleados)
+        {
+            if(emp.getUsuario().equals(empleado.getUsuario()) && 
+               emp.getContrasenia().equals(empleado.getContrasenia()) &&
+               emp.getTipoEmpleado().equals(empleado.getTipoEmpleado()))                        
+                return true;
+        }
+        return false;
+    }
+    
     public static Empleado obtenerEmpleado(String usuario, String contrasenia)
     {       
         ArrayList<Empleado> empleados = Empleado.desserializarEmpleado("Empleado.ser");

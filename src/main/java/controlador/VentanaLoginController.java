@@ -83,7 +83,7 @@ public class VentanaLoginController implements Initializable {
     @FXML
     private void accionRegistrar(ActionEvent event) throws Exception
     {
-        //App.setRoot("Sesion");
+        App.setRoot("VentanaSesion");
     }
 
     @FXML

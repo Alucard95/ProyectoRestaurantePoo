@@ -7,32 +7,32 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="220.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.VentanaLoginController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.VentanaLoginController">
     <children>
-      <Pane prefHeight="220.0" prefWidth="450.0">
+      <Pane prefHeight="400.0" prefWidth="600.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c62828" height="220.0" stroke="BLACK" strokeType="INSIDE" width="450.0" />
-            <Button layoutX="37.0" layoutY="130.0" mnemonicParsing="false" onAction="#accionLogin" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: #ffd54f;" text="Login">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c62828" height="400.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
+            <Button layoutX="82.0" layoutY="242.0" mnemonicParsing="false" onAction="#accionLogin" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: #ffd54f;" text="Login">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
-            <Button layoutX="169.0" layoutY="130.0" mnemonicParsing="false" onAction="#accionRegistrar" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: #ffd54f;" text="Registrar">
+            <Button layoutX="232.0" layoutY="242.0" mnemonicParsing="false" onAction="#accionRegistrar" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: #ffd54f;" text="Registrar">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
-            <Button layoutX="298.0" layoutY="130.0" mnemonicParsing="false" onAction="#accionSalir" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: #ffd54f;" text="Salir">
+            <Button layoutX="379.0" layoutY="242.0" mnemonicParsing="false" onAction="#accionSalir" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: #ffd54f;" text="Salir">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
-            <TextField fx:id="txt_usuario" layoutX="37.0" layoutY="20.0" prefHeight="31.0" prefWidth="330.0" promptText="Ingresar usuario">
+            <TextField fx:id="txt_usuario" layoutX="82.0" layoutY="82.0" prefHeight="31.0" prefWidth="330.0" promptText="Ingresar usuario">
                <font>
                   <Font size="15.0" />
                </font>
             </TextField>
-            <TextField fx:id="txt_contrasenia" layoutX="37.0" layoutY="70.0" prefHeight="31.0" prefWidth="330.0" promptText="Ingresar contraseña">
+            <TextField fx:id="txt_contrasenia" layoutX="82.0" layoutY="150.0" prefHeight="31.0" prefWidth="330.0" promptText="Ingresar contraseña">
                <font>
                   <Font size="15.0" />
                </font>
