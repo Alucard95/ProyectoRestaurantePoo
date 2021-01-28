@@ -1,8 +1,13 @@
 package controlador;
 
+import java.text.Format;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javafx.scene.control.Alert;
 import modelo.Empleado;
+import modelo.ReporteVentas;
 
 public class Helper 
 {
@@ -52,4 +57,43 @@ public class Helper
         return null;
     }
     
+    //Permite convertir la fecha de tipo String a Date para ser guardada en el archivo
+    public static Date StringToDateTime(String fecha)
+    {        
+        try {  
+            return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(fecha);
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+        }
+        return new Date();
+    }
+    
+    public static Date StringToDate(String fecha)
+    {        
+        try {  
+            return new SimpleDateFormat("yyyy-MM-dd").parse(fecha);
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+        }
+        return new Date();
+    }
+    
+    //Permite convertir la fecha de tipo Date a String para ser guardada en el archivo
+    public static String dateTimeToString(Date fecha)
+    {
+        Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return formatter.format(fecha);
+    }
+    
+    public static ArrayList<ReporteVentas> consultarReportesFecha(Date fechaInicio, Date fechaFin)
+    {
+        ArrayList<ReporteVentas> reportes = new ArrayList<>();
+        ArrayList<ReporteVentas> reportesTemp = ReporteVentas.desserializarReporte("Reporte.ser");
+        for(ReporteVentas reporte: reportesTemp)
+        {
+            if(reporte.getFechaPedido().after(fechaInicio) && reporte.getFechaPedido().before(fechaFin))
+                reportes.add(reporte);
+        }
+        return reportes;
+    }
 }

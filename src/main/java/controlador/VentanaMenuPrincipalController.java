@@ -90,7 +90,9 @@ public class VentanaMenuPrincipalController implements Initializable {
     }
     
     @FXML
-    private void salir(ActionEvent event) {
+    private void salir(ActionEvent event)
+    {
+        System.exit(0);
     }
 
     @FXML
@@ -102,7 +104,16 @@ public class VentanaMenuPrincipalController implements Initializable {
     }
 
     @FXML
-    private void mostrar_Reporte_Ventas(ActionEvent event) {
+    private void mostrar_Reporte_Ventas(ActionEvent event) throws Exception
+    {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("VentanaReporteVentas" + ".fxml"));
+        Parent root = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();  
+        stage.setTitle("Reporte de Ventas");
+        stage.setWidth(840);
+        stage.setHeight(440);
+        stage.setScene(new Scene(root));  
+        stage.show(); 
     }
 
     @FXML
