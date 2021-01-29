@@ -1,6 +1,7 @@
 package controlador;
 
 import com.project.proyectorestaurante.App;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -96,7 +97,18 @@ public class VentanaMenuPrincipalController implements Initializable {
     }
 
     @FXML
-    private void mostrarMonitoreo(ActionEvent event) {
+    private void mostrarMonitoreo(ActionEvent event) throws IOException
+    {               
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("VentanaMapaRestaurante" + ".fxml"));
+        Parent root = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();  
+        VentanaMapaRestauranteController controlador = fxmlLoader.<VentanaMapaRestauranteController>getController();                                
+        controlador.cargarPanelRestaurante(empleado,true);        
+        stage.setTitle("Mapa del restaurante");
+        stage.setWidth(1010);
+        stage.setHeight(640);
+        stage.setScene(new Scene(root));  
+        stage.show();
     }
 
     @FXML
@@ -130,7 +142,9 @@ public class VentanaMenuPrincipalController implements Initializable {
     }
 
     @FXML
-    private void mostrar_toma_pedido(ActionEvent event) {
+    private void mostrar_toma_pedido(ActionEvent event) 
+    {
+        
     }
     
 }

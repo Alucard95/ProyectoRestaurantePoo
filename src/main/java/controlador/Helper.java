@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.Iterator;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
+import modelo.Administrador;
 import modelo.CabeceraPedido;
 import modelo.CategoriaProducto;
 import modelo.Cliente;
@@ -18,8 +19,10 @@ import modelo.Disponibilidad;
 import modelo.Empleado;
 import modelo.Mesa;
 import modelo.Mesero;
+import modelo.OrdenadorFechaPedido;
 import modelo.Producto;
 import modelo.ReporteVentas;
+import modelo.TipoEmpleado;
 
 public class Helper 
 {
@@ -378,5 +381,81 @@ public class Helper
                 return mesa;
         }                
         return null;
+    }
+    
+    public static ArrayList<Mesa> obtenerMesasExistentes()
+    {
+        return Mesa.desserializarMesa("Mesa.ser");
+    }
+    
+    public static CabeceraPedido getUltimoPedidoAbiertoMesero(int numMesa, Mesero mesero)
+    {        
+        ArrayList<CabeceraPedido> cabeceras =  CabeceraPedido.desserializarCabeceraPedido("Cabecera.ser");
+        cabeceras.sort(new OrdenadorFechaPedido());
+        for(CabeceraPedido cabe : cabeceras)
+        {
+            if(cabe.getNumeroMesa() == numMesa && 
+               cabe.getMesero().getUsuario().equals(mesero.getUsuario()) &&
+               !cabe.isCerrado())
+                return cabe;
+        }
+        return null;
+    }    
+    
+    public static Mesero convertirEmpleadoAMesero(Empleado emp)
+    {
+        String nombre      = emp.getNombre();
+        String apellido    = emp.getApellido();
+        String usuario     = emp.getUsuario();
+        String contrasenia = emp.getContrasenia();
+        String email       = emp.getEmail();       
+        return new Mesero(nombre, apellido, usuario, contrasenia, email, TipoEmpleado.MESERO);
+    }
+    
+    public static Administrador convertirEmpleadoAAdministrador(Empleado emp)
+    {
+        String nombre      = emp.getNombre();
+        String apellido    = emp.getApellido();
+        String usuario     = emp.getUsuario();
+        String contrasenia = emp.getContrasenia();
+        String email       = emp.getEmail();       
+        return new Administrador(nombre, apellido, usuario, contrasenia, email, TipoEmpleado.ADMINISTRADOR);
+    }
+    
+    public static boolean verificarMeseroEnMesa(Mesero mesero, int numMesa)
+    {   
+        System.out.println("Mesero verificar=>"+mesero.getUsuario());
+        try
+        {
+            ArrayList<Mesa> mesas = Mesa.desserializarMesa("Mesa.ser");
+            for(Mesa mesa : mesas)
+            {
+                System.out.println("Mostrar mesa=>"+mesa.getNumero());
+                System.out.println("Mostrar mesa=>"+mesa.getMesero().getUsuario());
+                if(mesa.getNumero() == numMesa)
+                    if(mesa.getMesero().getUsuario().isEmpty())
+                        return true;
+                    else
+                        if(mesa.getMesero().getUsuario().equals(mesero.getUsuario()))                    
+                            return true;                
+            }                
+            return false;
+        }
+        catch(Exception e)
+        {
+            System.out.println("error cargado=>"+e.getLocalizedMessage());            
+        }
+        return false;
+    }
+    
+    public static boolean verificarMesaCreada(double x, double y)
+    {        
+        ArrayList<Mesa> mesas = Mesa.desserializarMesa("Mesa.ser");
+        for(Mesa mesa : mesas)
+        {
+            if(mesa.getCoordenadaX() == x && mesa.getCoordenadaY() == y)
+                return true;
+        }                
+        return false;
     }
 }
