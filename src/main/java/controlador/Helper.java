@@ -7,10 +7,17 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
+import modelo.CabeceraPedido;
 import modelo.CategoriaProducto;
+import modelo.Cliente;
+import modelo.DetallePedido;
+import modelo.Disponibilidad;
 import modelo.Empleado;
+import modelo.Mesa;
+import modelo.Mesero;
 import modelo.Producto;
 import modelo.ReporteVentas;
 
@@ -217,5 +224,159 @@ public class Helper
                break;           
        }                                   
        return categoriaProducto;       
+    }
+    
+    public static CabeceraPedido cargarPedido(int numMesa, Mesero mesero, Cliente cliente)
+    {
+        Date fechaPedido = new Date();    
+        ArrayList<CabeceraPedido> cabecerasPedido = CabeceraPedido.desserializarCabeceraPedido("Cabecera.ser");        
+        int nMesa;
+        String usuario, nombre, apellido;
+        
+        if(cabecerasPedido.size() > 0)
+        {
+            for(CabeceraPedido cabecera : cabecerasPedido)
+            {
+                nMesa = cabecera.getNumeroMesa();
+                usuario = cabecera.getMesero().getUsuario();
+                nombre = cabecera.getCliente().getNombre();
+                apellido = cabecera.getCliente().getApellido();
+                if(nMesa == numMesa && usuario.equalsIgnoreCase(mesero.getUsuario()) && 
+                   nombre.equalsIgnoreCase(cliente.getNombre()) && 
+                   apellido.equalsIgnoreCase(cliente.getApellido()) &&
+                   !cabecera.isCerrado())                                
+                {
+                   return cabecera;
+                }
+            }     
+            
+            //Crear Pedido
+            return new CabeceraPedido(fechaPedido, numMesa, mesero, cliente, 0, 0, 0,false);
+        }
+        else
+            //Crear Pedido
+            return new CabeceraPedido(fechaPedido, numMesa, mesero, cliente, 0, 0, 0,false);    
+    }
+    
+    public static ArrayList<DetallePedido> cargarDetallePedido(CabeceraPedido cabecera)
+    {          
+        Date fecha = cabecera.getFecha();
+        int numero = cabecera.getNumeroMesa();
+        String mesero = cabecera.getMesero().getUsuario();
+        
+        ArrayList<DetallePedido> detallesPedido = DetallePedido.desserializarDetallePedido("Detalle.ser");
+        ArrayList<DetallePedido> cargarDetalles = new ArrayList<>();        
+        if(detallesPedido.size() > 0)
+        {
+            for(DetallePedido det : detallesPedido)
+            {
+                Date fechaP = det.getCabecera().getFecha();
+                int num     = det.getCabecera().getNumeroMesa();
+                String mes  = det.getCabecera().getMesero().getUsuario(); 
+                if(fechaP.equals(fecha) && num == numero && 
+                   mesero.equalsIgnoreCase(mes))    
+                    cargarDetalles.add(det);
+            }
+            return cargarDetalles;            
+        }
+        else            
+            return cargarDetalles;
+    }
+    
+    public static DetallePedido verificarProductoEnDetalle(ArrayList<DetallePedido> detalles, Producto producto)
+    {
+        for(DetallePedido detalle : detalles)
+        {
+            if(detalle.getProducto().getCodigo().equalsIgnoreCase(producto.getCodigo()))
+                return detalle;
+        }
+        return null;
+    }
+    
+    public static void finalizarPedido(int numCuenta, CabeceraPedido cabecera, ArrayList<DetallePedido> detallesPedido)
+    {
+        Iterator itr;
+        Date fecha = cabecera.getFecha();
+        int numero = cabecera.getNumeroMesa();
+        String mesero = cabecera.getMesero().getUsuario();  
+        String cliente = cabecera.getCliente().getNombre()+" "+cabecera.getCliente().getApellido();
+        double total = cabecera.getTotal();
+        ArrayList<CabeceraPedido> cabeceras = CabeceraPedido.desserializarCabeceraPedido("Cabecera.ser");        
+        
+        try
+        {
+            //Eliminar la cabecera de Pedido
+            itr = cabeceras.iterator(); 
+            while (itr.hasNext()) 
+            { 
+                CabeceraPedido cab = (CabeceraPedido)itr.next();  
+                Date fechaP = cab.getFecha();
+                int num     = cab.getNumeroMesa();
+                String mes  = cab.getMesero().getUsuario();                        
+                if(fechaP.equals(fecha) && num == numero && 
+                   mesero.equalsIgnoreCase(mes))
+                    itr.remove(); 
+            }
+            cabeceras.add(cabecera);
+            CabeceraPedido.guardarCabeceraPedido(cabecera);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        //Eliminar los detalles de esa cabecera
+        ArrayList<DetallePedido> detalles = DetallePedido.desserializarDetallePedido("Detalle.ser");
+        itr = detalles.iterator(); 
+        while (itr.hasNext()) 
+        { 
+            DetallePedido det = (DetallePedido)itr.next();  
+            Date fechaP = det.getCabecera().getFecha();
+            int num     = det.getCabecera().getNumeroMesa();
+            String mes  = det.getCabecera().getMesero().getUsuario();                        
+            if(fechaP.equals(fecha) && num == numero && 
+               mesero.equalsIgnoreCase(mes))                                    
+                itr.remove(); 
+        } 
+        
+        try
+        {
+            //Agregar Detalles al archivo de Detalles
+            for(DetallePedido detalle : detallesPedido)
+                DetallePedido.guardarDetallePedido(detalle);
+        }
+        catch(Exception e)
+        {
+            
+        }
+        try
+        {
+            //CrearReporte
+            ReporteVentas reporte = new ReporteVentas(fecha,numCuenta,numero,mesero,cliente,total);
+            ReporteVentas.guardarReporte(reporte);
+            
+            //Actualizar mesa a disponible
+            Mesa mesa = Helper.obtenerMesa(numero);
+            if(mesa != null)
+            {
+                mesa.setEstadoDisponible(Disponibilidad.DISPONIBLE);
+                Mesa.eliminarMesa(mesa);
+                Mesa.actualizarMesa(mesa);
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+    
+    public static Mesa obtenerMesa(int numMesa)
+    {        
+        ArrayList<Mesa> mesas = Mesa.desserializarMesa("Mesa.ser");
+        for(Mesa mesa : mesas)
+        {
+            if(mesa.getNumero() == numMesa)
+                return mesa;
+        }                
+        return null;
     }
 }
