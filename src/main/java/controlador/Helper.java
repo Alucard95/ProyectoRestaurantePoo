@@ -1,12 +1,17 @@
 package controlador;
 
+import com.project.proyectorestaurante.App;
+import java.io.IOException;
 import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
+import modelo.CategoriaProducto;
 import modelo.Empleado;
+import modelo.Producto;
 import modelo.ReporteVentas;
 
 public class Helper 
@@ -95,5 +100,122 @@ public class Helper
                 reportes.add(reporte);
         }
         return reportes;
+    }
+    
+    public static ArrayList<Producto> productosBuscados(String nombre)
+    {
+        ArrayList<Producto> productos = Producto.desserializarProducto("Producto.ser");
+        System.out.println("Lista de productos=>"+productos.size());
+        ArrayList<Producto> productosTemp = new ArrayList<>();
+        for(Producto prod : productos)
+        {
+            if(prod.getNombre().toLowerCase().contains(nombre.toLowerCase()))
+            {
+                System.out.println("Si contiene al producto");
+                productosTemp.add(prod);
+            }
+        }
+        return productosTemp;
+    }
+    
+    public static ArrayList<Producto> cargarListadoProductos()
+    {       
+        return Producto.desserializarProducto("Producto.ser");                
+    }
+    
+     public static FXMLLoader loadFXML(String fxml) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+        return fxmlLoader;
+    }
+     
+    public static int validarNumeroEntero(String valor)
+    {
+        try
+        {
+            return Integer.parseInt(valor);
+        }
+        catch(Exception e)
+        {
+            return 0;
+        }
+    }
+    
+    public static double validarNumeroDouble(String valor)
+    {
+        try
+        {
+            return Double.parseDouble(valor);
+        }
+        catch(Exception e)
+        {
+            return 0;
+        }
+    }
+    
+    public static boolean verificarExistenciaProducto(String codigo)
+    {     
+        ArrayList<Producto> productos = Producto.desserializarProducto("Producto.ser");
+        for(Producto prod: productos)
+        {
+            if(prod.getCodigo().equals(codigo))                        
+                return true;
+        }
+        return false;
+    }
+    
+    public static CategoriaProducto getCategoriaProducto(String categoria)
+    {
+       CategoriaProducto categoriaProducto = CategoriaProducto.SOPAS;
+       switch(categoria)
+       {
+           case "RAPIDA":
+               categoriaProducto = CategoriaProducto.RAPIDA;
+               break;
+            
+           case "SOPAS":
+                categoriaProducto = CategoriaProducto.SOPAS;
+                break;
+            
+            case "ARROZ":
+               categoriaProducto = CategoriaProducto.ARROZ;
+               break;
+            
+            case "BEBIDAS":
+               categoriaProducto = CategoriaProducto.BEBIDAS;
+               break;
+            
+            case "POSTRE":
+               categoriaProducto = CategoriaProducto.POSTRE;
+               break;           
+       }
+       return categoriaProducto;       
+    }
+    
+    public static String getCategoriaProducto(CategoriaProducto categoria)
+    {
+       String categoriaProducto = "SOPA";
+       switch(categoria)
+       {
+           case RAPIDA:
+               categoriaProducto =  "RAPIDA";
+               break;
+            
+           case SOPAS:
+                categoriaProducto = "SOPAS";
+                break;
+            
+            case ARROZ:
+               categoriaProducto = "ARROZ";
+               break;
+            
+            case BEBIDAS:
+               categoriaProducto = "BEBIDAS";
+               break;
+            
+            case POSTRE:
+               categoriaProducto = "POSTRE";
+               break;           
+       }                                   
+       return categoriaProducto;       
     }
 }

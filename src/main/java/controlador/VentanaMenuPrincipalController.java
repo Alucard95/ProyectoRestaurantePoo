@@ -100,7 +100,16 @@ public class VentanaMenuPrincipalController implements Initializable {
     }
 
     @FXML
-    private void mostrar_menu_productos(ActionEvent event) {
+    private void mostrar_menu_productos(ActionEvent event) throws Exception
+    {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("VentanaGestionMenu" + ".fxml"));
+        Parent root = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();  
+        stage.setTitle("Gestión del Menu");
+        stage.setMaxWidth(750);
+        stage.setMaxHeight(500);
+        stage.setScene(new Scene(root));  
+        stage.show(); 
     }
 
     @FXML

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="440.0" prefWidth="730.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.VentanaRegistrarProductoController">
+    <children>
+      <Pane prefHeight="440.0" prefWidth="730.0" style="-fx-background-color: #c62828;">
+         <children>
+            <TextField fx:id="txt_precio" alignment="CENTER" layoutX="459.0" layoutY="218.0" prefHeight="22.0" prefWidth="200.0" promptText="Ingrese el precio" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Precio" textAlignment="CENTER">
+               <font>
+                  <Font name="Consolas Bold" size="12.0" />
+               </font>
+            </Text>
+            <Button alignment="CENTER" layoutX="383.0" layoutY="307.0" mnemonicParsing="false" onMouseClicked="#regresar" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: #ffd54f;" text="Regresar" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnRegistrar" alignment="CENTER" layoutX="245.0" layoutY="307.0" mnemonicParsing="false" onMouseClicked="#registrarProducto" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: #ffd54f;" text="Registrar" textAlignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <Lighting diffuseConstant="2.0" specularExponent="18.13" surfaceScale="5.8">
+                     <bumpInput>
+                        <Shadow height="255.0" radius="127.0" width="255.0" />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant color="#FFFFFF" />
+                     </light>
+                  </Lighting>
+               </effect>
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+            <Text fill="WHITE" layoutX="40.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Código">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <TextField fx:id="txt_codigo" alignment="CENTER" layoutX="40.0" layoutY="70.0" prefHeight="21.0" prefWidth="159.0" promptText="Inserte el código ">
+               <padding>
+                  <Insets bottom="4.0" />
+               </padding>
+            </TextField>
+            <Text fill="WHITE" layoutX="40.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción" wrappingWidth="108.57421875">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <TextField fx:id="txt_descripcion" alignment="CENTER" layoutX="40.0" layoutY="220.0" prefHeight="18.0" prefWidth="334.0" promptText="Ingrese la descripción">
+               <padding>
+                  <Insets bottom="4.0" />
+               </padding>
+            </TextField>
+            <Text fill="WHITE" layoutX="40.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <TextField fx:id="txt_nombre" alignment="CENTER" layoutX="40.0" layoutY="152.0" prefHeight="18.0" prefWidth="334.0" promptText="Ingrese el nombre del producto">
+               <padding>
+                  <Insets bottom="4.0" />
+               </padding>
+            </TextField>
+            <ComboBox fx:id="cmb_categoria_producto" layoutX="459.0" layoutY="148.0" prefHeight="26.0" prefWidth="200.0" promptText="&lt;Categoría de Producto&gt;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ComboBox>
+            <Button layoutX="462.0" layoutY="55.0" mnemonicParsing="false" onMouseClicked="#adjuntarFoto" text="Cargar imagen del Producto">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
