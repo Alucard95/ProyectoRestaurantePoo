@@ -138,13 +138,33 @@ public class VentanaMenuPrincipalController implements Initializable {
     }
 
     @FXML
-    private void mostrar_menu_plano(ActionEvent event) {
+    private void mostrar_menu_plano(ActionEvent event) throws IOException
+    {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("VentanaMapaRestaurante" + ".fxml"));
+        Parent root = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();  
+        VentanaMapaRestauranteController controlador = fxmlLoader.<VentanaMapaRestauranteController>getController();                                
+        controlador.cargarPanelRestaurante(empleado,false);        
+        stage.setTitle("Mapa del restaurante");
+        stage.setWidth(1000);
+        stage.setHeight(600);
+        stage.setScene(new Scene(root));  
+        stage.show();
     }
 
     @FXML
-    private void mostrar_toma_pedido(ActionEvent event) 
-    {
-        
+    private void mostrar_toma_pedido(ActionEvent event) throws IOException
+    {         
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("VentanaMapaRestaurante" + ".fxml"));
+        Parent root = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();  
+        VentanaMapaRestauranteController controlador = fxmlLoader.<VentanaMapaRestauranteController>getController();                                
+        controlador.cargarPanelRestaurante(empleado,false);        
+        stage.setTitle("Tomar Pedido");
+        stage.setWidth(1000);
+        stage.setHeight(600);
+        stage.setScene(new Scene(root));  
+        stage.show(); 
     }
     
 }
