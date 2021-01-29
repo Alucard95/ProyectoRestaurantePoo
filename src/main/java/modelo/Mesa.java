@@ -119,7 +119,7 @@ public class Mesa implements Serializable,Comparable<Empleado>
         ArrayList<Mesa> lista= Mesa.desserializarMesa("Mesa.ser");
         lista.add(mesa);
         Mesa.serializarMesa(lista, "Mesa.ser");
-        Helper.showMessage(new Alert(Alert.AlertType.INFORMATION),"Creación de Mesa",null,"Se ha registrado correctamente la mesa!");
+        Helper.mostrarMensaje(new Alert(Alert.AlertType.INFORMATION),"Creación de Mesa",null,"Se ha registrado correctamente la mesa!");
     } 
 
     @Override

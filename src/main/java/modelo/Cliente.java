@@ -64,7 +64,7 @@ public class Cliente implements Serializable,Comparable<Cliente>
         ArrayList<Cliente> lista= Cliente.desserializarCliente("Cliente.ser");
         lista.add(cliente);
         Cliente.serializarCliente(lista, "Cliente.ser");
-        Helper.showMessage(new Alert(Alert.AlertType.INFORMATION),"Creación de cuenta",null,"Se ha registrado correctamente el cliente!");
+        Helper.mostrarMensaje(new Alert(Alert.AlertType.INFORMATION),"Creación de cuenta",null,"Se ha registrado correctamente el cliente!");
     }
     
 }

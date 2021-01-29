@@ -38,19 +38,19 @@ public class VentanaLoginController implements Initializable {
             String contrasenia = txt_contrasenia.getText().trim();            
             if(Helper.verificarExistenciaEmpleado(usuario,contrasenia))          
             {
-                Helper.showMessage(new Alert(Alert.AlertType.INFORMATION), "Sesión", "Sesión iniciada", "Los datos fueron correctamente cargados");                
+                Helper.mostrarMensaje(new Alert(Alert.AlertType.INFORMATION), "Sesión", "Sesión iniciada", "Los datos fueron correctamente cargados");                
                 empleado = Helper.obtenerEmpleado(usuario, contrasenia);                
                 if(empleado != null)                                    
                     asignarOpcion();
                 else                   
-                    Helper.showMessage(new Alert(Alert.AlertType.ERROR), "Sesión", "Error al iniciar", "No existe un usuario con esos datos.\nIngrese correctamente los datos");
+                    Helper.mostrarMensaje(new Alert(Alert.AlertType.ERROR), "Sesión", "Error al iniciar", "No existe un usuario con esos datos.\nIngrese correctamente los datos");
             }
             else
-                    Helper.showMessage(new Alert(Alert.AlertType.ERROR), "Sesión", "Error al iniciar", "No existe un usuario con esos datos.\nIngrese correctamente los datos");
+                    Helper.mostrarMensaje(new Alert(Alert.AlertType.ERROR), "Sesión", "Error al iniciar", "No existe un usuario con esos datos.\nIngrese correctamente los datos");
         }
         catch(Exception e)
         {
-            Helper.showMessage(new Alert(Alert.AlertType.ERROR), "Sesión", "Error al iniciar", "ERROR EN EL SISTEMA");
+            Helper.mostrarMensaje(new Alert(Alert.AlertType.ERROR), "Sesión", "Error al iniciar", "ERROR EN EL SISTEMA");
         }     
         
     }

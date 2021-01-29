@@ -102,14 +102,14 @@ public class VentanaRegistrarProductoController implements Initializable {
             CategoriaProducto categoria = Helper.getCategoriaProducto(categoriaString);
             
             if(codigo.isEmpty() || nombre.isEmpty() ||precio == 0 )
-                Helper.showMessage(new Alert(Alert.AlertType.ERROR),"Creación de Producto",null,"Debe ingresar el código, el nombre del producto y el precio!");
+                Helper.mostrarMensaje(new Alert(Alert.AlertType.ERROR),"Creación de Producto",null,"Debe ingresar el código, el nombre del producto y el precio!");
             else
             {
                 Producto producto;
                 if(modo.equals("INSERT"))
                 {
                     if(Helper.verificarExistenciaProducto(codigo))
-                    Helper.showMessage(new Alert(Alert.AlertType.ERROR),"Creación de Producto",null,"El código del producto ya existe!");
+                    Helper.mostrarMensaje(new Alert(Alert.AlertType.ERROR),"Creación de Producto",null,"El código del producto ya existe!");
                     else
                     {
                         producto = new Producto(codigo,nombre,descripcion,urlImagen,precio,categoria); 
@@ -134,7 +134,7 @@ public class VentanaRegistrarProductoController implements Initializable {
         catch(Exception e)
         {
             e.printStackTrace();
-            Helper.showMessage(new Alert(Alert.AlertType.ERROR), "Registro de Producto", "Error", "Hubo problemas al registrarse, procure \nIngresar correctamente los datos.");
+            Helper.mostrarMensaje(new Alert(Alert.AlertType.ERROR), "Registro de Producto", "Error", "Hubo problemas al registrarse, procure \nIngresar correctamente los datos.");
         }finally{
             //btnRegistrar.setDisable(true);
         }
@@ -161,11 +161,11 @@ public class VentanaRegistrarProductoController implements Initializable {
             if(imageFile.getName().endsWith(".jpg")||imageFile.getName().endsWith(".png")){
                 origen = Paths.get(imageFile.getPath());
                 destino = Paths.get(System.getProperty("user.dir")+"/src/main/resources/imageHelper/"+imageFile.getName());
-                Helper.showMessage(new Alert(Alert.AlertType.INFORMATION), "Cargar una imagen", "Listo!", imageFile.getName()/*"Se ha cargado correctamente la imagen"*/);
+                Helper.mostrarMensaje(new Alert(Alert.AlertType.INFORMATION), "Cargar una imagen", "Listo!", imageFile.getName()/*"Se ha cargado correctamente la imagen"*/);
                 btnRegistrar.setDisable(false);
             }
         }catch(Exception e){
-            Helper.showMessage(new Alert(Alert.AlertType.ERROR), "Cargar una imagen", "Carga Fallida!", "Algo debió ocurrir con el Sistema,\nPor favor, envía un correo notificando tu problema (Ayuda).");
+            Helper.mostrarMensaje(new Alert(Alert.AlertType.ERROR), "Cargar una imagen", "Carga Fallida!", "Algo debió ocurrir con el Sistema,\nPor favor, envía un correo notificando tu problema (Ayuda).");
         }
     }
     

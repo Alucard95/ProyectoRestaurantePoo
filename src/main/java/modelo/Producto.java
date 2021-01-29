@@ -119,7 +119,7 @@ public class Producto implements Serializable,Comparable<Producto>{
         ArrayList<Producto> lista= Producto.desserializarProducto("Producto.ser");
         lista.add(producto);
         Producto.serializarProducto(lista, "Producto.ser");
-        Helper.showMessage(new Alert(Alert.AlertType.INFORMATION),"Creación de Producto",null,"Se ha registrado correctamente el producto!");
+        Helper.mostrarMensaje(new Alert(Alert.AlertType.INFORMATION),"Creación de Producto",null,"Se ha registrado correctamente el producto!");
     }    
 
     public static void actualizarProducto(Producto producto) 

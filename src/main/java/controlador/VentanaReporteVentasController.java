@@ -60,7 +60,7 @@ public class VentanaReporteVentasController implements Initializable {
         String fechaInicial = txt_FechaInicio.getText().trim();
         String fechaFinal = txt_FechaFin.getText().trim();
         if(fechaInicial.isEmpty() || fechaFinal.isEmpty())
-            Helper.showMessage(new Alert(Alert.AlertType.WARNING),"Consulta de reportes",null,"Debe registrar la fecha inicial y final!");
+            Helper.mostrarMensaje(new Alert(Alert.AlertType.WARNING),"Consulta de reportes",null,"Debe registrar la fecha inicial y final!");
         else            
         {
             tbl_Reportes.getItems().clear();

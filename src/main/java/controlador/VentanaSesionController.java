@@ -47,9 +47,9 @@ public class VentanaSesionController implements Initializable {
             
             //Validar que se seleccione un solo tipo de Empleado
             if(!chk_administrador.isSelected() && !chk_mesero.isSelected())
-                Helper.showMessage(new Alert(Alert.AlertType.ERROR),"Creación de cuenta",null,"Debe seleccionar al menos un tipo de Empleado!");
+                Helper.mostrarMensaje(new Alert(Alert.AlertType.ERROR),"Creación de cuenta",null,"Debe seleccionar al menos un tipo de Empleado!");
             else if(chk_administrador.isSelected() && chk_mesero.isSelected())
-                Helper.showMessage(new Alert(Alert.AlertType.ERROR),"Creación de cuenta",null,"Debe estar seleccionado sólo un tipo de Empleado!");
+                Helper.mostrarMensaje(new Alert(Alert.AlertType.ERROR),"Creación de cuenta",null,"Debe estar seleccionado sólo un tipo de Empleado!");
             else
             {
                 if(chk_administrador.isSelected())
@@ -63,7 +63,7 @@ public class VentanaSesionController implements Initializable {
                 //Validar que el empleado no exista
                 boolean verificarEstadoEmpleado = Helper.verificarExistenciaEmpleado(empleado);
                 if(verificarEstadoEmpleado)
-                    Helper.showMessage(new Alert(Alert.AlertType.ERROR),"Creación de cuenta",null,"El empleado ya existe!");                                                
+                    Helper.mostrarMensaje(new Alert(Alert.AlertType.ERROR),"Creación de cuenta",null,"El empleado ya existe!");                                                
                 
                 empleado.guardarEmpleado(empleado);
                 App.setRoot("VentanaLogin");                                                
@@ -71,7 +71,7 @@ public class VentanaSesionController implements Initializable {
         }
         catch(Exception e)
         {            
-           Helper.showMessage(new Alert(Alert.AlertType.ERROR),"Creación de cuenta",null,"Wow! No se ha podido crear el empleado");
+           Helper.mostrarMensaje(new Alert(Alert.AlertType.ERROR),"Creación de cuenta",null,"Wow! No se ha podido crear el empleado");
         }
     }
 

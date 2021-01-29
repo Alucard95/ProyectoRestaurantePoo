@@ -169,7 +169,7 @@ public class VentanaMapaRestauranteController implements Initializable {
                         //Abrir pedido existente o crear pedido
                         aperturarPedido(Helper.validarNumeroEntero(layout.getId()));
                     } else {
-                        Helper.showMessage(new Alert(Alert.AlertType.ERROR), "Apertura de Pedido ", null, "No se puede aperturar el pedido porque pertenece a otro mesero!");
+                        Helper.mostrarMensaje(new Alert(Alert.AlertType.ERROR), "Apertura de Pedido ", null, "No se puede aperturar el pedido porque pertenece a otro mesero!");
                     }
                 }
             } else if (e.getButton() == MouseButton.SECONDARY && !monitorearMapa) {
@@ -177,7 +177,7 @@ public class VentanaMapaRestauranteController implements Initializable {
                 if (empleado.getTipoEmpleado().equals(TipoEmpleado.ADMINISTRADOR)) {
                     Mesa mesa = Helper.obtenerMesa(Helper.validarNumeroEntero(layout.getId()));
                     if (mesa != null && !mesa.getEstadoDisponible().equals(Disponibilidad.DISPONIBLE)) {
-                        Helper.showMessage(new Alert(Alert.AlertType.ERROR), "Eliminacion de Mesa ", null, "No se puede eliminar mesa ocupada!");
+                        Helper.mostrarMensaje(new Alert(Alert.AlertType.ERROR), "Eliminacion de Mesa ", null, "No se puede eliminar mesa ocupada!");
                     } else {
                         System.out.println("Se presiono el boton secundario");
                         pane_restaurante.getChildren().remove(layout);
@@ -300,7 +300,7 @@ public class VentanaMapaRestauranteController implements Initializable {
         if (result.isPresent()) {
             cliente = result.get().trim();
             if (cliente.isEmpty()) {
-                Helper.showMessage(new Alert(Alert.AlertType.ERROR), "Mensaje de Sistema", "Cliente a tomar Pedido", "Favor ingresar el nombre del cliente!");
+                Helper.mostrarMensaje(new Alert(Alert.AlertType.ERROR), "Mensaje de Sistema", "Cliente a tomar Pedido", "Favor ingresar el nombre del cliente!");
             } else {
                 try {
                     //Crear cuenta
@@ -401,7 +401,7 @@ public class VentanaMapaRestauranteController implements Initializable {
             int mesa = Integer.parseInt(numMesaCapacidad.getKey());
             int capacidad = Integer.parseInt(numMesaCapacidad.getValue());
             if (Helper.obtenerMesa(mesa) != null) {
-                Helper.showMessage(new Alert(Alert.AlertType.ERROR), "Creación de Mesa", null, "La mesa ya existe!");
+                Helper.mostrarMensaje(new Alert(Alert.AlertType.ERROR), "Creación de Mesa", null, "La mesa ya existe!");
             } else {
                 try {
                     Mesa mesaC;

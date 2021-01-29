@@ -199,7 +199,7 @@ public class VentanaTomarPedidoController implements Initializable {
         {            
             cantidad = Helper.validarNumeroEntero(result.get());
             if(cantidad == 0)            
-                Helper.showMessage(new Alert(Alert.AlertType.ERROR), "Mensaje de Sistema", "Cantidad ingresada", "Favor ingresar una cantidad válida mayor a 0");                
+                Helper.mostrarMensaje(new Alert(Alert.AlertType.ERROR), "Mensaje de Sistema", "Cantidad ingresada", "Favor ingresar una cantidad válida mayor a 0");                
             else
             {
                 try

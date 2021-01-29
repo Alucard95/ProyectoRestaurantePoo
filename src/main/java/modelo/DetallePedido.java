@@ -100,7 +100,7 @@ public class DetallePedido implements Serializable,Comparable<DetallePedido>
         ArrayList<DetallePedido> lista= DetallePedido.desserializarDetallePedido("Detalle.ser");
         lista.add(detalle);
         DetallePedido.serializarDetallePedido(lista, "Detalle.ser");
-        Helper.showMessage(new Alert(Alert.AlertType.INFORMATION),"Creación de Producto",null,"Se ha registrado correctamente el producto!");
+        Helper.mostrarMensaje(new Alert(Alert.AlertType.INFORMATION),"Creación de Producto",null,"Se ha registrado correctamente el producto!");
     }  
     
     public static void actualizarDetallePedido(DetallePedido detalle) 

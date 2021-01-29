@@ -109,7 +109,7 @@ public class Empleado implements Serializable,Comparable<Empleado>{
         ArrayList<Empleado> lista= Empleado.desserializarEmpleado("Empleado.ser");
         lista.add(empleado);
         Empleado.serializarEmpleado(lista, "Empleado.ser");
-        Helper.showMessage(new Alert(Alert.AlertType.INFORMATION),"Creación de cuenta",null,"Se ha registrado correctamente el empleado!");
+        Helper.mostrarMensaje(new Alert(Alert.AlertType.INFORMATION),"Creación de cuenta",null,"Se ha registrado correctamente el empleado!");
     }
 
     @Override

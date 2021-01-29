@@ -79,7 +79,7 @@ public class Cuenta implements Serializable,Comparable<Cuenta>{
         ArrayList<Cuenta> lista= Cuenta.desserializarCuenta("Cuenta.ser");
         lista.add(cuenta);
         Cuenta.serializarCuenta(lista, "Cuenta.ser");
-        Helper.showMessage(new Alert(Alert.AlertType.INFORMATION),"Creación de Cuenta",null,"Se ha registrado correctamente la cuenta!");
+        Helper.mostrarMensaje(new Alert(Alert.AlertType.INFORMATION),"Creación de Cuenta",null,"Se ha registrado correctamente la cuenta!");
     }   
     
     

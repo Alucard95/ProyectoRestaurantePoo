@@ -112,6 +112,6 @@ public class ReporteVentas implements Serializable,Comparable<ReporteVentas>
         ArrayList<ReporteVentas> lista= ReporteVentas.desserializarReporte("Reporte.ser");
         lista.add(reporte);
         ReporteVentas.serializarReporte(lista, "Reporte.ser");
-        Helper.showMessage(new Alert(Alert.AlertType.INFORMATION),"Creación de Producto",null,"Se ha registrado correctamente el producto!");
+        Helper.mostrarMensaje(new Alert(Alert.AlertType.INFORMATION),"Creación de Producto",null,"Se ha registrado correctamente el producto!");
     }  
 }

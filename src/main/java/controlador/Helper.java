@@ -26,13 +26,16 @@ import modelo.TipoEmpleado;
 
 public class Helper 
 {
-    public static void showMessage(Alert show,String titulo, String encabezado, String mensaje){
+    
+    //Permite mostrar los mensajes al usuario mediante alertas
+    public static void mostrarMensaje(Alert show,String titulo, String encabezado, String mensaje){
         show.setHeaderText(encabezado);
         show.setTitle(titulo);
         show.setContentText(mensaje);
         show.showAndWait();
     }
  
+    //Va a buscar en la lista serializada de empleados y verifica si este existe
     public static boolean verificarExistenciaEmpleado(String usuario, String contrasenia)
     {
         //Este método permite verificar si el usuario a crear es vendedor, comprador o ninguno. Validacion en el main y para el metodo que agrega los tipo de usuario
@@ -46,6 +49,7 @@ public class Helper
         return false;
     }
     
+    //Va a buscar en la lista serializada de empleados y verifica si este existe
     public static boolean verificarExistenciaEmpleado(Empleado empleado)
     {
         //Este método permite verificar si el usuario a crear es vendedor, comprador o ninguno. Validacion en el main y para el metodo que agrega los tipo de usuario
@@ -60,6 +64,7 @@ public class Helper
         return false;
     }
     
+    //Va a buscar en la lista serializada de empleados y regresa el empleado existente
     public static Empleado obtenerEmpleado(String usuario, String contrasenia)
     {       
         ArrayList<Empleado> empleados = Empleado.desserializarEmpleado("Empleado.ser");
@@ -72,7 +77,7 @@ public class Helper
         return null;
     }
     
-    //Permite convertir la fecha de tipo String a Date para ser guardada en el archivo
+    //Permite convertir la fecha de tipo String a DateTime para ser guardada en el archivo
     public static Date StringToDateTime(String fecha)
     {        
         try {  
@@ -83,6 +88,7 @@ public class Helper
         return new Date();
     }
     
+    //Permite convertir la fecha de tipo String a Date para ser guardada en el archivo
     public static Date StringToDate(String fecha)
     {        
         try {  
@@ -100,6 +106,7 @@ public class Helper
         return formatter.format(fecha);
     }
     
+    //Permite consultar los reportes guardados en el archivo serializado
     public static ArrayList<ReporteVentas> consultarReportesFecha(Date fechaInicio, Date fechaFin)
     {
         ArrayList<ReporteVentas> reportes = new ArrayList<>();
@@ -138,6 +145,7 @@ public class Helper
         return fxmlLoader;
     }
      
+    //Permite validar si el valor ingresado es un numero valido
     public static int validarNumeroEntero(String valor)
     {
         try
@@ -150,6 +158,7 @@ public class Helper
         }
     }
     
+    //Permite validar si el valor ingresado es un numero valido
     public static double validarNumeroDouble(String valor)
     {
         try
@@ -229,6 +238,7 @@ public class Helper
        return categoriaProducto;       
     }
     
+    //Permite buscar los pedidos guardados en el archivo serializado 
     public static CabeceraPedido cargarPedido(int numMesa, Mesero mesero, Cliente cliente)
     {
         Date fechaPedido = new Date();    
@@ -261,6 +271,7 @@ public class Helper
             return new CabeceraPedido(fechaPedido, numMesa, mesero, cliente, 0, 0, 0,false);    
     }
     
+    //Permite cargar los detalles pertenecientes a la cabecera del pedido
     public static ArrayList<DetallePedido> cargarDetallePedido(CabeceraPedido cabecera)
     {          
         Date fecha = cabecera.getFecha();
@@ -296,6 +307,9 @@ public class Helper
         return null;
     }
     
+    //Permite finalizar el pedido, actualizar el estado del pedido
+    //Permite actualizar el detalle de los valores finales del pedido
+    //Al final se graba la informacion del pedido en la tabla de reportes
     public static void finalizarPedido(int numCuenta, CabeceraPedido cabecera, ArrayList<DetallePedido> detallesPedido)
     {
         Iterator itr;
