@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane onMousePressed="#click" stylesheets="@../../../../../../../../../Fruits-Market-master/FruitMarket/src/values/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.ItemPedidoController">
+   <styleClass>
+      <String fx:value="fruit-item" />
+      <String fx:value="shadow" />
+   </styleClass>
+   <children>
+      <Pane pickOnBounds="false" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: FFFFF;">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" width="300.0" />
+            <Label fx:id="lbl_LineName" layoutX="20.0" layoutY="5.0" prefWidth="200.0" text="Sopa de Pollo">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label fx:id="lbl_lineDescription" layoutX="20.0" layoutY="25.0" text="2 Unidades a  $3">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label fx:id="lbl_lineTotal" layoutX="220.0" layoutY="5.0" prefWidth="75.0" text="\$ 6" textAlignment="RIGHT" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

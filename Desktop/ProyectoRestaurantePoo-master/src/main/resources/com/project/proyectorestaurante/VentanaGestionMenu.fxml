@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="750.0" style="-fx-background-color: #c62828;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.VentanaGestionMenuController">
+   <children>
+      <Pane prefHeight="500.0" prefWidth="750.0">
+         <children>
+            <Pane layoutX="20.0" layoutY="70.0" prefHeight="410.0" prefWidth="700.0">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" width="700.0" />
+                  <GridPane fx:id="grid_Productos" prefHeight="5.0" prefWidth="0.0">
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                  </GridPane>
+               </children>
+            </Pane>
+            <Pane layoutX="20.0" layoutY="20.0" prefHeight="50.0" prefWidth="528.0">
+               <children>
+                  <TextField fx:id="lbl_buscar_productos" layoutY="10.0" prefHeight="25.0" prefWidth="193.0" />
+                  <Button layoutX="230.0" layoutY="4.0" mnemonicParsing="false" onAction="#accionBuscarProductos" style="-fx-background-color: #ffd54f;" text="Buscar">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Button>
+                  <Button layoutX="319.0" layoutY="4.0" mnemonicParsing="false" onAction="#accionAgregarProducto" style="-fx-background-color: #ffd54f;" text="Nuevo">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Button>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
